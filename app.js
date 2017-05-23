@@ -88,3 +88,12 @@ class Dog {
 
 var jack = new Dog('Jack Gordon', 2);
 jack.bark();
+
+var buf = new Buffer('Hello', 'utf8');
+console.log(buf);
+console.log(buf.toString());
+console.log(buf.toJSON());
+// .write replaces buffer index's
+// wollo
+buf.write('wo');
+console.log(buf.toString());
