@@ -1,3 +1,5 @@
+'use strict';
+
 // var greet = require('./greet');
 var eventConfig = require('./config').events;
 //  Actual node emitters
@@ -30,6 +32,8 @@ var util = require('util');
 // USE util to create events inheritance for Greetr
 
 function Greetr() {
+  // this .call properly binds variables and methods
+  Emitter.call(this);
   this.greeting = 'Hello world!';
 }
 
@@ -66,3 +70,17 @@ var obj = {
 obj.greet(12);
 obj.greet.call({name: 'player2'}, 15);
 obj.greet.apply({name: 'player3'}, [27]);
+
+// ES6 class similar to Ruby
+class Dog {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  bark() {
+    console.log(`Woof, Woof, my name is ${ this.name }`);
+  }
+}
+
+var jack = new Dog('Jack Gordon', 2);
+jack.bark();
