@@ -30,19 +30,23 @@ var util = require('util');
 // 
 
 // USE util to create events inheritance for Greetr
-
-function Greetr() {
-  // this .call properly binds variables and methods
-  Emitter.call(this);
-  this.greeting = 'Hello world!';
+class Greetr extends Emitter {
+  constructor() {
+    super();
+    this.greeting = 'Hello world!';
+  }
+  greet(data) {
+    console.log(` ${ this.greeting } : ${ data }`);
+    this.emit('greet', data);
+  }
 }
 
-util.inherits(Greetr, Emitter);
+// function Greetr() {
+//   // this .call properly binds variables and methods
+//   Emitter.call(this);
+//   this.greeting = 'Hello world!';
+// }
 
-Greetr.prototype.greet = function(data) {
-  console.log(this.greeting + ': ' + data);
-  this.emit('greet', data);
-};
 
 var greeter1 = new Greetr();
 
