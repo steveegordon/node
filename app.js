@@ -53,3 +53,16 @@ var name = "Steve";
 // avoid of use babeljs.io for front end for compatability
 var hello = `Hello, ${ name }`;
 console.log(hello);
+
+var obj = {
+  name: 'player1',
+  greet: function(age) {
+    console.log(`Hello ${ this.name }, your are ${ age } years old.`);
+  }
+};
+
+// apply and call allow you to use 'borrow' code
+// with different params
+obj.greet(12);
+obj.greet.call({name: 'player2'}, 15);
+obj.greet.apply({name: 'player3'}, [27]);
