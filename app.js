@@ -48,3 +48,8 @@ greeter1.on('greet', function(data) {
 // Passing data down the chain through the emitter
 greeter1.greet("Umberto");
 
+var name = "Steve";
+// Template literal string concat ES6 in node
+// avoid of use babeljs.io for front end for compatability
+var hello = `Hello, ${ name }`;
+console.log(hello);
