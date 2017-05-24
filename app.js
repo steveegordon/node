@@ -97,3 +97,11 @@ console.log(buf.toJSON());
 // wollo
 buf.write('wo');
 console.log(buf.toString());
+// ES6 buffer, not used in node however
+var buffer = new ArrayBuffer(8);
+var view = new Int32Array(buffer);
+view[1] = 12;
+view[0] = 0;
+console.log(view);
+
+
