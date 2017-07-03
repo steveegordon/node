@@ -8,6 +8,10 @@ var port = process.env.PORT || 1337;
 app.get('/', function(req, res) {
   res.send('<html><head></head><body><h1>Hello world!</h1></body></html>');
 });
+// get id specific request, send back data specific to requests params
+app.get('/person/:id', function(req, res) {
+  res.send('<html><head></head><body><h1>Person: ' + req.params.id + '</h1></body></html>');
+});
 // if get request to api endpoint respond with json
 app.get('/api', function(req, res) {
   res.json({ firstname: 'Steve', lastname: 'Gordon'});
