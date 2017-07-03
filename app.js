@@ -1,33 +1,16 @@
-'use strict';
-// Bring in http module
-var http = require('http');
-// Bring in filsync module
-var fs = require('fs');
-
-// create a server, tell it how to handle requests and responses
-http.createServer(function(req, res) {
-
-  if (req.url === '/') {
-    fs.createReadStream(__dirname + '/index.html').pipe(res)
-  }
-
-  else if (req.url === '/api') {
-// set only one response for all request types, specify response ok/200
-// specify response is html
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  // Create an object which holds our data
-  var obj = {
-    firstname: "Steve",
-    lastname: "Gordon"
-  };
-  // Serialize object to JSON for transfer and send
-  res.end(JSON.stringify(obj));
-  }
-
-  else {
-  res.writeHead(404);
-  res.end();
-  }
-
-// set up the port server is listening on
-}).listen(1337, '127.0.0.1');
+// bring in express module
+var express = require('express');
+// create app which has all express methods
+var app = express();
+// set a port using an environmental variable or set it to 1337
+var port = process.env.PORT || 1337;
+// if get request to home url respond with html
+app.get('/', function(req, res) {
+  res.send('<html><head></head><body><h1>Hello world!</h1></body></html>');
+});
+// if get request to api endpoint respond with json
+app.get('/api', function(req, res) {
+  res.json({ firstname: 'Steve', lastname: 'Gordon'});
+});
+// set app to listen to port variable
+app.listen(port);
