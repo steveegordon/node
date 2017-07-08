@@ -7,6 +7,8 @@ var port = process.env.PORT || 1337;
 // middleware, when assets are referenced express looks to the public
 //  directory to load them
 app.use('/assets', express.static(__dirname + '/public'));
+// load in ejs template engine module for ejs templates
+app.set('view engine', 'ejs');
 // middleware, if path is blank it will run with every request, '/' will run on 
 // '/' and any of its sub-domains...other middleware includes cookie parsers etc
 app.use('/', function(req, res, next) {
@@ -17,11 +19,11 @@ app.use('/', function(req, res, next) {
 });
 // if get request to home url respond with html
 app.get('/', function(req, res) {
-  res.send('<html><head><link href=assets/style.css type=text/css rel=stylesheet /></head><body><h1>Hello world!</h1></body></html>');
+  res.render('index');
 });
 // get id specific request, send back data specific to requests params
 app.get('/person/:id', function(req, res) {
-  res.send('<html><head></head><body><h1>Person: ' + req.params.id + '</h1></body></html>');
+  res.render('person', { ID: req.params.id });
 });
 // if get request to api endpoint respond with json
 app.get('/api', function(req, res) {
