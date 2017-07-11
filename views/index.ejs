@@ -1,10 +1,33 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="assets/style.css"">
+    <!-- JQUERY -->
+    <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
   </head>
   <body>
     <h1>
       Hello World!
     </h1>
+      <!-- Form for '/person' post method -->
+        <form method="POST" action='/person'>
+          First name: <input type="text" id="firstname" name="firstname" /> <br />
+          Last name: <input type="text" id="lastname" name="lastname" /><br />
+          <input type="submit" value="Submit">
+      </form>
+      <!-- JQUERY JSONdata post onload -->
+      <script type="text/javascript">
+        $.ajax({
+          type: "POST",
+          url: "/personjson",
+          data: JSON.stringify({ firstname: 'Steve',
+            lastname: 'Gordon'
+          }),
+          dataType: 'json',
+          contentType: 'application/json'
+        });
+      </script>
   </body>
 </html>
