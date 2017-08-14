@@ -1,15 +1,27 @@
-<html>
+<html ng-app="TestApp">
   <head>
     <link rel="stylesheet" type="text/css" href="assets/style.css"">
     <!-- JQUERY -->
     <script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
   </head>
-  <body>
+  <body ng-controller="MainController as vm">
     <h1>
       Hello World!
     </h1>
+    <br />
+    <ul>
+    <!-- angular updates the dom with all the people in the people array data
+    which was sent from the server and saved in the client JS -->
+      <li ng-repeat='person in vm.people'>
+        {{ person.name }}
+      </li>
+    </ul>
+    <script>
+    // script grabs serverPeople array from sent by the server and stores it as
+    // clientPeople variable using browsers JS engine
+      var clientPeople = <%- JSON.stringify (serverPeople) %>;
+    </script>
+    <script src="/assets/js/app.js"></script>
   </body>
 </html>
